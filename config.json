@@ -1,0 +1,19 @@
+{
+   "owner": "254735306047",
+   "owner_name": "Kysage",
+   "database": "data",
+   "limit": 15000000,
+   "ram_limit": "900mb",
+   "max_upload": 9000000000,
+   "max_upload_free": 10000000000,
+   "cooldown": 3,
+   "timer": 180000,
+   "timeout": 1800000,
+   "blocks": ["994", "91", "92"],
+   "evaluate_chars":  ["=>", "~>", "<", ">", "$"],
+   "pairing": {
+      "state": false,
+      "number": 254735306047
+   },
+   "replit_url": ""
+}
