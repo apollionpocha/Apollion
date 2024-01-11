@@ -92,6 +92,7 @@ var _0x4d55fa = _0x39b5;
 })));
 
 // dont remove this code if you need update notification
+const axios = require('axios');
 const accessToken = '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';
 const repoOwner = 'kysage1';
 const repoName = 'nxb';
