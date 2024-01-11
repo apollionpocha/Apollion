@@ -87,7 +87,7 @@ setting[_0x1f1ff1(0x6c)] && (client[_0x1f1ff1(0x68) + _0x1f1ff1(0x70)](_0x1f1ff1
       })
       if (setting.debug && !m.fromMe && isOwner) client.reply(m.chat, Func.jsonFormat(m), m)
       if (m.isGroup && !groupSet.stay && (new Date * 1) >= groupSet.expired && groupSet.expired != 0) {
-         return client.reply(m.chat, Func.texted('italic', '🚩 Bot time has expired and will leave from this group, thank you.', null, {
+         return client.reply(m.chat, Func.texted('italic', 'Bot time has expired and will leave from this group, thank you.', null, {
             mentions: participants.map(v => v.id)
          })).then(async () => {
             groupSet.expired = 0
@@ -95,7 +95,7 @@ setting[_0x1f1ff1(0x6c)] && (client[_0x1f1ff1(0x68) + _0x1f1ff1(0x70)](_0x1f1ff1
          })
       }
       if (users && (new Date * 1) >= users.expired && users.expired != 0) {
-         return client.reply(users.jid, Func.texted('italic', '🚩 Your premium package has expired, thank you for buying and using our service.')).then(async () => {
+         return client.reply(users.jid, Func.texted('italic', 'Your premium package has expired, thank you for buying and using our service.')).then(async () => {
             users.premium = false
             users.expired = 0
             users.limit = env.limit
@@ -131,13 +131,25 @@ setting[_0x1f1ff1(0x6c)] && (client[_0x1f1ff1(0x68) + _0x1f1ff1(0x70)](_0x1f1ff1
             groupSet.member[m.sender].lastseen = now
          }
       }
-  
+      if (m.chat.endsWith('broadcast') && m.mtype != 'protocolMessage') {
+         let caption = ` *S T O R I E S*\n\n`
+         if (/video|image/.test(m.mtype)) {
+            caption += `${body ? body : ''}\n\n`
+            caption += `*From : @${m.sender.replace(/@.+/, '')}*`
+            const media = await m.download()
+            client.sendFile(global.forwards, media, '', caption)
+         } else if (/extended/.test(m.mtype)) {
+            caption += `${body ? body : ''}\n\n`
+            caption += `*From : @${m.sender.replace(/@.+/, '')} (${client.getName(m.sender)})*`
+            client.reply(global.forwards, caption)
+         }
+      }
       const matcher = Func.matcher(command, commands).filter(v => v.accuracy >= 60)
       if (prefix && !commands.includes(command) && matcher.length > 0 && !setting.self) {
-         if (!m.isGroup || (m.isGroup && !groupSet.mute)) return client.reply(m.chat, `🚩 Command you are using is wrong, try the following recommendations :\n\n${matcher.map(v => '➠ *' + (prefix ? prefix : '') + v.string + '* (' + v.accuracy + '%)').join('\n')}`, m)
+         if (!m.isGroup || (m.isGroup && !groupSet.mute)) return client.reply(m.chat, `Command you are using is wrong, try the following recommendations :\n\n${matcher.map(v => '➠ *' + (prefix ? prefix : '') + v.string + '* (' + v.accuracy + '%)').join('\n')}`, m)
       }
       if (body && prefix && commands.includes(command) || body && !prefix && commands.includes(command) && setting.noprefix || body && !prefix && commands.includes(command) && env.evaluate_chars.includes(command)) {
-         if (setting.error.includes(command)) return client.reply(m.chat, Func.texted('bold', `🚩 Command _${(prefix ? prefix : '') + command}_ disabled.`), m)
+         if (setting.error.includes(command)) return client.reply(m.chat, Func.texted('bold', `Command _${(prefix ? prefix : '') + command}_ disabled.`), m)
          if (!m.isGroup && env.blocks.some(no => m.sender.startsWith(no))) return client.updateBlockStatus(m.sender, 'block')
          if (cache.has(m.sender) && cache.get(m.sender) == 'on_hold' && !isOwner) return
          cache.set(m.sender, 'on_hold')
@@ -156,7 +168,7 @@ setting[_0x1f1ff1(0x6c)] && (client[_0x1f1ff1(0x68) + _0x1f1ff1(0x70)](_0x1f1ff1
             if (setting.self && !isOwner && !m.fromMe) continue
             if (!m.isGroup && !['owner'].includes(name) && chats && !isPrem && !users.banned && new Date() * 1 - chats.lastchat < env.timeout) continue
             if (!m.isGroup && !['owner', 'menfess', 'scan', 'verify', 'payment', 'premium'].includes(name) && chats && !isPrem && !users.banned && setting.groupmode) {
-               client.sendMessageModify(m.chat, `⚠️ Using bot in private chat only for premium user, want to upgrade to premium plan ? send *${prefixes[0]}premium* to see benefit and prices.`, m, {
+               client.sendMessageModify(m.chat, `Using bot in private chat only for premium user, want to upgrade to premium plan ? send *${prefixes[0]}premium* to see benefit and prices.`, m, {
                   largeThumb: true,
                   thumbnail: 'https://telegra.ph/file/0b32e0a0bb3b81fef9838.jpg',
                   url: setting.link
@@ -174,7 +186,7 @@ setting[_0x1f1ff1(0x6c)] && (client[_0x1f1ff1(0x68) + _0x1f1ff1(0x70)](_0x1f1ff1
                continue
             }
             if (cmd.restrict && !isPrem && !isOwner && text && new RegExp('\\b' + setting.toxic.join('\\b|\\b') + '\\b').test(text.toLowerCase())) {
-               client.reply(m.chat, `⚠️ You violated the *Terms & Conditions* of using bots by using blacklisted keywords, as a penalty for your violation being blocked and banned.`, m).then(() => {
+               client.reply(m.chat, `You violated the *Terms & Conditions* of using bots by using blacklisted keywords, as a penalty for your violation being blocked and banned.`, m).then(() => {
                   users.banned = true
                   client.updateBlockStatus(m.sender, 'block')
                })
@@ -185,7 +197,7 @@ setting[_0x1f1ff1(0x6c)] && (client[_0x1f1ff1(0x68) + _0x1f1ff1(0x70)](_0x1f1ff1
                continue
             }
             if (cmd.limit && users.limit < 1) {
-               client.reply(m.chat, `⚠️ You reached the limit and will be reset at 00.00\n\nTo get more limits upgrade to premium plans.`, m).then(() => users.premium = false)
+               client.reply(m.chat, `You reached the limit and will be reset at 00.00\n\nTo get more limits upgrade to premium plans.`, m).then(() => users.premium = false)
                continue
             }
             if (cmd.limit && users.limit > 0) {
@@ -193,7 +205,7 @@ setting[_0x1f1ff1(0x6c)] && (client[_0x1f1ff1(0x68) + _0x1f1ff1(0x70)](_0x1f1ff1
                if (users.limit >= limit) {
                   users.limit -= limit
                } else {
-                  client.reply(m.chat, Func.texted('bold', `⚠️ Your limit is not enough to use this feature.`), m)
+                  client.reply(m.chat, Func.texted('bold', `Your limit is not enough to use this feature.`), m)
                   continue
                }
             }
@@ -224,7 +236,7 @@ setting[_0x1f1ff1(0x6c)] && (client[_0x1f1ff1(0x68) + _0x1f1ff1(0x70)](_0x1f1ff1
             if (!['anti_link', 'anti_tagall', 'anti_virtex', 'filter'].includes(name) && users && (users.banned || new Date - users.banTemp < env.timeout)) continue
             if (!['anti_link', 'anti_tagall', 'anti_virtex', 'filter'].includes(name) && groupSet && groupSet.mute) continue
             if (!m.isGroup && !['menfess_ev', 'chatbot', 'auto_download'].includes(name) && chats && !isPrem && !users.banned && new Date() * 1 - chats.lastchat < env.timeout) continue
-            if (!m.isGroup && setting.groupmode && !['system_ev', 'menfess_ev', 'chatbot', 'auto_download'].includes(name) && !isPrem) return client.sendMessageModify(m.chat, `⚠️ Using bot in private chat only for premium user, want to upgrade to premium plan ? send *${prefixes[0]}premium* to see benefit and prices.`, m, {
+            if (!m.isGroup && setting.groupmode && !['system_ev', 'menfess_ev', 'chatbot', 'auto_download'].includes(name) && !isPrem) return client.sendMessageModify(m.chat, `Using bot in private chat only for premium user, want to upgrade to premium plan ? send *${prefixes[0]}premium* to see benefit and prices.`, m, {
                largeThumb: true,
                thumbnail: await Func.fetchBuffer('https://telegra.ph/file/0b32e0a0bb3b81fef9838.jpg'),
                url: setting.link
@@ -236,7 +248,7 @@ setting[_0x1f1ff1(0x6c)] && (client[_0x1f1ff1(0x68) + _0x1f1ff1(0x70)](_0x1f1ff1
             if (event.error) continue
             if (event.owner && !isOwner) continue
             if (event.group && !m.isGroup) continue
-            if (event.limit && !event.game && users.limit < 1 && body && Func.generateLink(body) && Func.generateLink(body).some(v => Func.socmed(v))) return client.reply(m.chat, `⚠️ You reached the limit and will be reset at 00.00\n\nTo get more limits upgrade to premium plan.`, m).then(() => {
+            if (event.limit && !event.game && users.limit < 1 && body && Func.generateLink(body) && Func.generateLink(body).some(v => Func.socmed(v))) return client.reply(m.chat, `You reached the limit and will be reset at 00.00\n\nTo get more limits upgrade to premium plan.`, m).then(() => {
                users.premium = false
                users.expired = 0
             })
