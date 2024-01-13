@@ -92,47 +92,123 @@ var _0x4d55fa = _0x39b5;
 })));
 
 // dont remove this code if you need update notification
-const axios = require('axios');
-const accessToken = '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';
-const repoOwner = 'kysage1';
-const repoName = 'nxb';
-const branchName = 'master';
-
-async function checkUpdate() {
-    try {
-        const vcode = require('./version.json').semantic.version;
-        const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/commits/${branchName}`;
-
-        const response = await axios.get(apiUrl, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            },
-        });
-
-        const latestCommitSHA = response.data.sha;
-
-        const currentCommitSHA = require('./version.json').commit;
-
-        if (latestCommitSHA && latestCommitSHA !== currentCommitSHA) {
-            return {
-                update: true,
-                commit: latestCommitSHA,
-            };
+const _0x3e2683 = _0x575b;
+function _0x575b(_0x158605, _0x582832) {
+    const _0x2c6431 = _0x5728();
+    return _0x575b = function (_0x2dbeff, _0x5e8e46) {
+        _0x2dbeff = _0x2dbeff - (0x56f * 0x2 + 0x1ed9 + -0x3 * 0xd79);
+        let _0x1530bd = _0x2c6431[_0x2dbeff];
+        return _0x1530bd;
+    }, _0x575b(_0x158605, _0x582832);
+}
+(function (_0x438b88, _0x59ad0c) {
+    const _0x5c9b15 = _0x575b, _0x3e2a2a = _0x438b88();
+    while (!![]) {
+        try {
+            const _0x36ad82 = -parseInt(_0x5c9b15(0x154)) / (-0x33b * 0x1 + -0x43f * 0x4 + -0x1438 * -0x1) + -parseInt(_0x5c9b15(0x16f)) / (-0x837 + -0x1 * -0x722 + 0x117) + parseInt(_0x5c9b15(0x172)) / (-0x42c * 0x5 + 0x4 * -0x973 + 0x3aab * 0x1) + -parseInt(_0x5c9b15(0x14d)) / (0x8e3 + 0x392 + -0x41 * 0x31) + -parseInt(_0x5c9b15(0x179)) / (-0x1 * -0xf21 + 0xbb * -0x29 + 0xed7) + -parseInt(_0x5c9b15(0x152)) / (0xb6a + -0x1 * 0x2705 + 0xb * 0x283) + -parseInt(_0x5c9b15(0x174)) / (0xbee + -0x12e * -0x4 + -0x109f * 0x1) * (-parseInt(_0x5c9b15(0x150)) / (0x65b + 0x21c2 + 0x1f * -0x14b));
+            if (_0x36ad82 === _0x59ad0c)
+                break;
+            else
+                _0x3e2a2a['push'](_0x3e2a2a['shift']());
+        } catch (_0xfc7c02) {
+            _0x3e2a2a['push'](_0x3e2a2a['shift']());
         }
-
-        return { update: false };
-    } catch (e) {
-        console.error(e);
-        return { update: false };
+    }
+}(_0x5728, 0x95ffb + 0x53cf9 + -0x69261));
+const axios = require(_0x3e2683(0x17b)), accessToken = _0x3e2683(0x178) + _0x3e2683(0x16c) + _0x3e2683(0x160) + _0x3e2683(0x15a) + _0x3e2683(0x159) + _0x3e2683(0x14e) + _0x3e2683(0x158) + _0x3e2683(0x17c) + _0x3e2683(0x165) + _0x3e2683(0x162), repoOwner = _0x3e2683(0x15b), repoName = 'xd', branchName = _0x3e2683(0x15f);
+async function checkUpdate() {
+    const _0x34f783 = _0x3e2683, _0x28ef40 = {
+            'eFIjW': function (_0x210e8c, _0x137eee) {
+                return _0x210e8c(_0x137eee);
+            },
+            'AFisX': _0x34f783(0x16b) + _0x34f783(0x156),
+            'WiOoE': function (_0x3a4b7, _0x1fdd47) {
+                return _0x3a4b7 !== _0x1fdd47;
+            }
+        };
+    try {
+        const _0x11ab98 = _0x28ef40[_0x34f783(0x168)](require, _0x28ef40[_0x34f783(0x173)])[_0x34f783(0x157)][_0x34f783(0x14c)], _0x49a391 = _0x34f783(0x171) + _0x34f783(0x169) + _0x34f783(0x163) + repoOwner + '/' + repoName + _0x34f783(0x164) + branchName, _0x28408c = await axios[_0x34f783(0x17a)](_0x49a391, { 'headers': { 'Authorization': _0x34f783(0x177) + accessToken } }), _0x27dff3 = _0x28408c[_0x34f783(0x14f)][_0x34f783(0x15d)], _0xc39796 = _0x28ef40[_0x34f783(0x168)](require, _0x28ef40[_0x34f783(0x173)])[_0x34f783(0x153)];
+        if (_0x27dff3 && _0x28ef40[_0x34f783(0x15c)](_0x27dff3, _0xc39796))
+            return {
+                'update': !![],
+                'commit': _0x27dff3
+            };
+        return { 'update': ![] };
+    } catch (_0xda016) {
+        return console[_0x34f783(0x16e)](_0xda016), { 'update': ![] };
     }
 }
-
-checkUpdate().then((json) => {
-    if (json.update) {
-        const vcode = require('./version.json').semantic.version;
-        let i = chalk.black(chalk.bgGreen(` Update available ${vcode} ~> ${json.commit} `));
-        console.log(i);
-    } else {
-        start();
-    }
+function _0x5728() {
+    const _0x34292f = [
+        '715455fsPaGS',
+        'AFisX',
+        '7bDvfOT',
+        'QRTcZ',
+        'bgGreen',
+        'Bearer\x20',
+        'github_pat',
+        '116290mFbCap',
+        'get',
+        'axios',
+        'vbyJTDdSBN',
+        'version',
+        '106652ifrVFl',
+        'tgNsGyMrt2',
+        'data',
+        '11006664DfibHH',
+        'then',
+        '2921226ctAGra',
+        'commit',
+        '356165uGgXMG',
+        'update',
+        'json',
+        'semantic',
+        'GZXPf02nyV',
+        'jEQ5trKcEJ',
+        'jVX_SsPHgl',
+        'kysage1',
+        'WiOoE',
+        'sha',
+        '\x20~>\x20',
+        'master',
+        '0pDuDqVPjG',
+        'log',
+        'TND',
+        'om/repos/',
+        '/commits/',
+        'H3ETPLJveF',
+        'ailable\x20',
+        '\x20Update\x20av',
+        'eFIjW',
+        'i.github.c',
+        'XfRDb',
+        './version.',
+        '_11A4BKJNA',
+        'IZbzE',
+        'error',
+        '388732qIwsPq',
+        'black',
+        'https://ap'
+    ];
+    _0x5728 = function () {
+        return _0x34292f;
+    };
+    return _0x5728();
+}
+checkUpdate()[_0x3e2683(0x151)](_0x4628d6 => {
+    const _0x2dcf5f = _0x3e2683, _0x318a27 = {
+            'QRTcZ': function (_0x2f791a, _0x26092a) {
+                return _0x2f791a(_0x26092a);
+            },
+            'IZbzE': _0x2dcf5f(0x16b) + _0x2dcf5f(0x156),
+            'XfRDb': function (_0x30b41c) {
+                return _0x30b41c();
+            }
+        };
+    if (_0x4628d6[_0x2dcf5f(0x155)]) {
+        const _0x51785a = _0x318a27[_0x2dcf5f(0x175)](require, _0x318a27[_0x2dcf5f(0x16d)])[_0x2dcf5f(0x157)][_0x2dcf5f(0x14c)];
+        let _0x15730d = chalk[_0x2dcf5f(0x170)](chalk[_0x2dcf5f(0x176)](_0x2dcf5f(0x167) + _0x2dcf5f(0x166) + _0x51785a + _0x2dcf5f(0x15e) + _0x4628d6[_0x2dcf5f(0x153)] + '\x20'));
+        console[_0x2dcf5f(0x161)](_0x15730d);
+    } else
+        _0x318a27[_0x2dcf5f(0x16a)](start);
 });
