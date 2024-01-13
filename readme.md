@@ -1,4 +1,4 @@
-_### SPIKE BOT_
+### _*SPIKE BOT*_
 
 > An implementation of [@neoxr/wb](https://www.npmjs.com/package/@neoxr/wb) which has been optimized to be lightweigth && [@whiskeysockets/baileys](https://www.npmjs.com/package/@whiskeysockets/baileys)
 
@@ -6,7 +6,7 @@ _### SPIKE BOT_
 
 **Creator / Group** : [Kysage](https://wa.me/254735306047) / [Spike Network](https://chat.whatsapp.com/G25QRqzjv189j6muR5ZF7J)
 
-_### Requirements_
+### _*Requirements*_
 
 - [x] NodeJS 14
 - [x] FFMPEG
@@ -56,7 +56,7 @@ _**Notes**:_
 > Localdb is only for development state, for production state you must use a cloud database (mongo / postgres)
 
 
-_### Pairing Code_
+### _*Pairing Code*_
 
 Connecting account without qr scan but using pairing code.
 
@@ -71,7 +71,7 @@ Connecting account without qr scan but using pairing code.
 }
 ```
 
-_### Installation & Run_
+### _*Installation & Run*_
 
 Make sure the configuration and server meet the requirements so that there are no problems during installation or when this bot is running, type this on your console :
 
