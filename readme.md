@@ -12,7 +12,7 @@
 - [x] FFMPEG
 - [x] Server vCPU/RAM 1/2GB (Min)
 
-### -*Configuration*_
+### _*Configuration*_
 
 There are 2 configuration files namely ```.env``` and ```config.json```, just adjust owner and owner name, others leave as they are.
 
