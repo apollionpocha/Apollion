@@ -8,18 +8,18 @@
    },
    "repository":{
       "type":"git",
-      "url":"git+https://github.com/neoxr/wbot.git"
+      "url":"git+https://github.com/kysage1/spike.git"
    },
    "keywords":[
       "wb",
       "bot"
    ],
-   "author":"Wildan Izzudin",
+   "author":"Malik",
    "license":"ISC",
    "bugs":{
-      "url":"https://github.com/neoxr/wbot/issues"
+      "url":"https://github.com/kysage1/spike/issues"
    },
-   "homepage":"https://github.com/neoxr/wbot#readme",
+   "homepage":"https://github.com/kysage1/spike#readme",
    "dependencies":{
       "@whiskeysockets/baileys": "^6.5.0",      
       "@colors/colors": "^1.6.0",
